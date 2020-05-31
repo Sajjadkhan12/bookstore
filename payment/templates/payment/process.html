@@ -1,0 +1,106 @@
+{% extends "bookshop/base.html" %}
+{% load static %}
+{% block title %}Pay by credit card{% endblock %}
+
+{% block content %}
+<style>
+    /* braintree hosted fields */
+    form div.field {
+        
+
+        display: block;
+        width: 60%;
+        height: 45px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #962e2e;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        
+    }
+    
+
+</style>
+    <div class="ps-hero">
+        <div class="container">
+            <h3>Pay by credit card</h3>
+            <p>Page Checkout</p>
+        </div>
+    </div>
+<div class="container" style="margin-top: 3%;">
+    <form id="payment" method="post">
+
+        <label for="card-number">Card Number<span>*</span></label>
+        <div id="card-number" class="field" ></div>
+        <br>
+        <label for="cvv">CVV<span>*</span></label>
+        <div id="cvv" class="field"></div>
+        <br>
+        <label for="expiration-date">Expiration Date<span>*</span></label>
+        <div id="expiration-date" class="field"></div>
+        <br>
+        <input type="hidden" id="nonce" name="payment_method_nonce" value="">
+        <br>
+        {% csrf_token %}
+        
+        <input class="ps-btn" type="submit" value="Pay">
+        
+       
+    </form>
+</div>
+  <!-- includes the Braintree JS client SDK -->
+  <script src="https://js.braintreegateway.com/web/3.58.0/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.58.0/js/hosted-fields.min.js"></script>
+  <script>
+    var form = document.querySelector('#payment');
+    var submit = document.querySelector('input[type="submit"]');
+
+    braintree.client.create({
+      authorization: '{{ client_token }}'
+    }, function (clientErr, clientInstance) {
+      if (clientErr) {
+        console.error(clientErr);
+        return;
+      }
+
+      braintree.hostedFields.create({
+        client: clientInstance,
+        styles: {
+          'input': {'font-size': '13px'},
+          'input.invalid': {'color': 'red'},
+          'input.valid': {'color': 'green'}
+        },
+        fields: {
+          number: {selector: '#card-number'},
+          cvv: {selector: '#cvv'},
+          expirationDate: {selector: '#expiration-date'}
+        }
+      }, function (hostedFieldsErr, hostedFieldsInstance) {
+        if (hostedFieldsErr) {
+          console.error(hostedFieldsErr);
+          return;
+        }
+
+        submit.removeAttribute('disabled');
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+            if (tokenizeErr) {
+              console.error(tokenizeErr);
+              return;
+            }
+            // set nonce to send to the server
+            document.getElementById('nonce').value = payload.nonce;
+            // submit form
+            document.getElementById('payment').submit();
+          });
+        }, false);
+      });
+    });
+  </script>
+ 
+  {% endblock %}

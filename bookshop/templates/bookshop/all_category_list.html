@@ -1,0 +1,10 @@
+{% extends 'bookshop/base.html' %}
+{% load static %}
+<title>{% block title %} Bookshop Home{% endblock%}</title>
+{% block content %} 
+    {% for category in categories %}
+        <ul>
+            <a href="{% url 'category_detail' category.slug %}"><li> {{category.name }}</li></a>
+        </ul>
+    {% endfor %}
+{% endblock %}

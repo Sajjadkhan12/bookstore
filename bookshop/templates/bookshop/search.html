@@ -1,0 +1,41 @@
+{% extends 'bookshop/base.html' %}
+{% load static %}
+<title>{% block title %} {% if category %}{{ category.name }}{% else %} All Products {% endif %}  {% endblock%}</title>
+{% block content %}
+    <div class="ps-section pt-80 pb-30">
+        <div class="ps-container">
+            <div class="ps-section__header text-center">
+                <h2 class="ps-section__title">Search Results for {{searh_query}}</h2>
+                
+            </div>
+             <!-- products  -->
+            <div class="ps-section__content">
+                <div class="row">
+                    {% for query in query_result %}
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                            <div class="ps-product--fashion">
+                                    <div class="ps-product__thumbnail"><a class="ps-product__overlay" href="{% url 'product_detail' query.slug %}"></a>
+                                        <img class="lazy" src="{% if query.image %}{{ query.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                                        <ul class="ps-product__actions">
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="{% url 'product_detail' query.slug %}">{{ query.name }}</a>
+                                        <p class="ps-product__price">${{ query.price }}</p>
+                                    </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+

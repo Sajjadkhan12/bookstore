@@ -1,0 +1,131 @@
+{% extends 'bookshop/base.html' %}
+{% load static %}
+<title>{% block title %} Checkout | Bookshop {% endblock%}</title>
+{% block content %} 
+    <div class="ps-hero">
+        <div class="container">
+            <h3>Checkout</h3>
+            <p>Page Checkout</p>
+        </div>
+    </div>
+    <div class="ps-checkout pt-40 pb-40">
+        <div class="ps-container">
+            <form class="ps-form--checkout"  method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                        <div class="ps-checkout__billing">
+                            <h3>Billing Detail</h3>
+                            <div class="form-group form-group--inline">
+                                <label>First Name<span>*</span>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" type="text" name="first_name" required>
+                                </div>
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>Last Name<span>*</span>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" type="text" name="last_name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group form-group--inline">
+                                <label>Email Address<span>*</span>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" type="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>Address <span>*</span>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" type="text" name="address" required>
+                                </div>
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>Phone<span>*</span>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" type="text" name="phone">
+                                </div>
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>Postal Code<span>*</span>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" type="text" name="postal_code">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group form-group--inline">
+                                <label>City <span>*</span>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" type="text" name="city">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-checkout__order">
+                            <header>
+                                <h3>Your Order</h3>
+                            </header>
+                            <div class="content">
+                                <table class="table ps-checkout__products">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase">Product</th>
+                                            <th class="text-uppercase">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in cart %}
+                                        
+                                            <tr>
+                                                <td>{{ item.product.name }} {{ item.quantity }}x</td>
+                                                <td>${{ item.total_price }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td>Order Total</td>
+                                            <td>${{ cart.get_total_price }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <footer>
+                                <h3>Payment Method</h3>
+                                <div class="form-group cheque">
+                                    <div class="ps-radio ps-radio--small">
+                                        <input class="form-control" type="radio" id="rdo01" name="payment" checked>
+                                        <label for="rdo01">Cheque Payment</label>
+                                    </div>
+                                    <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                </div>
+                                <div class="form-group paypal">
+                                    <div class="ps-radio ps-radio--small">
+                                        <input class="form-control" type="radio" name="payment" id="rdo02">
+                                        <label for="rdo02">Paypal</label>
+                                    </div>
+                                    <ul class="ps-payment-method">
+                                        <li><a href="#"><img src="{% static 'bookshop/images/payment/1.png' %}" alt=""></a></li>
+                                        <li><a href="#"><img src="{% static 'bookshop/images/payment/2.png' %}" alt=""></a></li>
+                                        <li><a href="#"><img src="{% static 'bookshop/images/payment/3.png' %}" alt=""></a></li>
+                                    </ul>
+                                    <button class="ps-btn ps-btn--fullwidth">Place Order</button>
+                                </div>
+                            </footer>
+                        </div>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

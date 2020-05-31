@@ -1,0 +1,316 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link href="apple-touch-icon.png" rel="apple-touch-icon">
+        <link href="{% static 'bookshop/favicon.png' %}" rel="icon">
+        <meta name="author" content="Nghia Minh Luong">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <!-- Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CLibre+Baskerville:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/ps-icon/style.css' %}">
+        <!-- CSS Library-->
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/bootstrap/dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/owl-carousel/assets/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/bootstrap-select/dist/css/bootstrap-select.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/slick/slick/slick.css' %}">
+        <!-- Custom-->
+        <link rel="stylesheet" href="{% static 'bookshop/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/revolution/css/settings.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/revolution/css/layers.css' %}">
+        <link rel="stylesheet" href="{% static 'bookshop/plugins/revolution/css/navigation.css' %}">
+        <!-- bootstrap -->
+       
+
+
+        <title>{% block title %} BookShop {% endblock %}</title>
+    </head>
+    <body>
+        <div class="header--sidebar"></div>
+        <header class="header" data-sticky="true">
+            <div class="header__top">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 ">
+                            <p>460 West 34th Street, 15th floor, New York - Hotline: 804-377-3580 - 804-399-3580</p>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="header__actions">
+                                {% if user.is_authenticated %}
+                                    <div class="btn-group ps-dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<i class="fa fa-angle-down"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">My Dashboard</a></li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                {% else %}
+                                <div class="btn-group ps-dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login & Regiser <i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{% url 'login' %}">Login</a></li>
+                                        <li><a href="{% url 'register' %}"> Register</a></li>
+                                    </ul>
+                                </div>
+                                {% endif %}
+   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="navigation">
+                <div class="container-fluid">
+                    <div class="left">
+                        <div class="header__logo"><a class="ps-logo" href="{% url 'index' %}"><img src="{% static 'bookshop/images/logo.png' %}" alt=""></a></div>
+                    </div>
+                    <div class="center">
+                        <ul class="main-menu menu">
+                            <li class="current-menu-item "><a href="{% url 'index' %}">HOME</a></li>
+                            <li><a href="{% url 'product_list' %}">CATEGORY</a></li>
+                            <li><a href="#">Women</a></li>
+                            <li><a href="#">Kids</a></li>
+                            <li class="menu-item-has-children dropdown"><a href="#">News</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item-has-children dropdown"><a href="blog-grid.html">Blog-grid</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="blog-grid.html">Blog Grid 1</a></li>
+                                            <li><a href="blog-grid-2.html">Blog Grid 2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog-list.html">Blog List</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'contact_us' %}">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        
+                        <div class="menu-toggle"><span></span></div>
+                        <div class="ps-cart"><a class="ps-cart__toggle" href="#"><span><i></i></span><i class="ps-icon-cart"></i></a>
+                            <div class="ps-cart__listing">
+                                {% for item in cart %}
+                                {% with product=item.product %}
+                                <div class="ps-cart__content">
+                                    <div class="ps-cart-item">
+                                        <div class="ps-cart-item__thumbnail"><a href="{{ product.get_absolute_url }}"></a><img src="{{product.image.url}}" alt=""></div>
+                                        <div class="ps-cart-item__content">
+                                           <a class="ps-cart-item__title" href="{{ product.get_absolute_url }}"><small>{{ product.name }} <br> Single Price ${{ item.price }}</small></a>
+                                           <p> Total Quantity: {{ item.quantity }}x<span> <br> Total Price ${{ item.total_price }}</span></p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                {% endwith %}
+                                {% endfor %}
+                                <div class="ps-cart__total">
+                                    
+                                    <p>Item Total:<span>${{ cart.get_total_price }}</span></p>
+                                </div>
+                                <div class="ps-cart__footer"><a class="ps-btn" href="{% url 'order_create' %}">Check out<i class="ps-icon-arrow-left"></i></a></div>
+                            </div>
+                        </div>
+                        <form class="ps-form--search" action="{% url 'search' %}" method="post">
+                            {% csrf_token %}
+                            <input class="form-control" name="search" type="text" placeholder="Search Product…">
+                            <button><i class="ps-icon-search"></i></button>
+                        </form>
+                        
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+            
+        {% block content %}
+        {% endblock %}
+
+        <footer class="ps-footer site-footer">
+            <div class="ps-footer__content">
+                <div class="ps-container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="ps-site-info site-info"><a class="ps-logo" href="index.html"><img src="{% static 'bookshop/images/logo.png' %}" alt=""></a>
+                                <p>Xuper is a global fashion destination for 20-somethings. We sell cutting-edge fashion and offer a wide variety of fashion-related content, making Xuper Store the hub of a thriving fashion community.</p>
+                                <div class="ps-site-info__contact">
+                                    <h4>Contact Info</h4>
+                                    <p>179 CMT8, District I, HCM City, Vietnam</p>
+                                    <p>(+84 ) 7534 9773, (+84 ) 874 548</p>
+                                </div>
+                                <ul class="ps-social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="ps-widget ps-widget--footer widget widget_footer">
+                                        <h2 class="ps-widget__title">Our Branding</h2>
+                                        <ul class="ps-list--line">
+                                            <li><a class="text-uppercase" href="#">DKNY</a></li>
+                                            <li><a class="text-uppercase" href="#">GUCCI</a></li>
+                                            <li><a class="text-uppercase" href="#">BANANA & DOLCE</a></li>
+                                            <li><a class="text-uppercase" href="#">HERMER</a></li>
+                                            <li><a class="text-uppercase" href="#">CHANEL</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="ps-widget ps-widget--footer widget widget_footer">
+                                        <h2 class="ps-widget__title">Customer Care</h2>
+                                        <ul class="ps-list--line">
+                                            <li><a href="#">My Account</a></li>
+                                            <li><a href="#">Track your Order</a></li>
+                                            <li><a href="#">Customer Service</a></li>
+                                            <li><a href="#">FAQs</a></li>
+                                            <li><a href="#">Product Support</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="ps-widget ps-widget--footer widget widget_footer">
+                                        <h2 class="ps-widget__title">Your Account</h2>
+                                        <ul class="ps-list--line">
+                                            <li><a href="#">Your account</a></li>
+                                            <li><a href="#">Newsletter</a></li>
+                                            <li><a href="#">Information</a></li>
+                                            <li><a href="#">Payment menthod</a></li>
+                                            <li><a href="#">Your wishlist</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-footer__copyright">
+                <div class="ps-container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <p>&copy; Copyright by <span>XUPER STORE</span>. Design by <a href="#">Alena Studio</a>.</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="ps-footer__payment-methods"><a href="#"><img src="{% static 'bookshop/images/payment-method/paypal.png' %}" alt=""></a><a href="#"><img src="images/payment-method/visa.png" alt=""></a><a href="#"><img src="images/payment-method/master-card.png" alt=""></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="ps-modal default" id="quickview">
+            <div class="ps-modal__content">
+                <div class="ps-modal__remove"><i class="fa fa-remove"></i></div>
+                <div class="ps-product--detail">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="ps-product__thumbnail">
+                                <div class="ps-product__preview">
+                                    <div class="ps-product__variants">
+                                        <div class="item"><img src="{% static 'bookshop/images/shoe-detail/1.jpg' %}" alt=""></div>
+                                        <div class="item"><img src="{% static 'images/shoe-detail/2.jpg' %}" alt=""></div>
+                                        <div class="item"><img src="{% static 'images/shoe-detail/3.jpg' %}" alt=""></div>
+                                        <div class="item"><img src="{% static 'images/shoe-detail/3.jpg' %}" alt=""></div>
+                                        <div class="item"><img src="{% static 'images/shoe-detail/3.jpg' %}" alt=""></div>
+                                    </div>
+                                </div>
+                                <div class="ps-product__image">
+                                    <div class="item"><img src="images/shoe-detail/1.jpg" alt="" data-zoom-image="images/shoe-detail/1.jpg"></div>
+                                    <div class="item"><img src="images/shoe-detail/2.jpg" alt="" data-zoom-image="images/shoe-detail/2.jpg"></div>
+                                    <div class="item"><img src="images/shoe-detail/3.jpg" alt="" data-zoom-image="images/shoe-detail/3.jpg"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="ps-product__info">
+                                <div class="ps-product__rating">
+                                    <select class="ps-rating">
+                                        <option value="1">1</option>
+                                        <option value="1">2</option>
+                                        <option value="1">3</option>
+                                        <option value="1">4</option>
+                                        <option value="2">5</option>
+                                    </select>
+                                </div>
+                                <h1>Air strong  training</h1>
+                                <p class="ps-product__category"><a href="#">  Men shoes</a>,<a href="#">  Nike</a>,<a href="#">  Jordan</a></p>
+                                <h3 class="ps-product__price"><span>£</span> 115 <del><span>£</span> 330</del></h3>
+                                <div class="ps-product__short-desc">
+                                    <p>The Nike Free RN 2017 Men's Running Shoe weighs less than previous versions and features an updated knit material…</p>
+                                </div>
+                                <div class="ps-product__block ps-product__style">
+                                    <h4>CHOOSE YOUR COLOR</h4>
+                                    <div class="ps-radio ps-radio--inline">
+                                        <input class="form-control" type="radio" id="radio-0" name="type-1">
+                                        <label for="radio-0"></label>
+                                    </div>
+                                    <div class="ps-radio ps-radio--inline ps-radio--color1">
+                                        <input class="form-control" type="radio" id="radio1" name="type-1">
+                                        <label for="radio1"></label>
+                                    </div>
+                                    <div class="ps-radio ps-radio--inline ps-radio--color2">
+                                        <input class="form-control" type="radio" id="radio2" name="type-1">
+                                        <label for="radio2"></label>
+                                    </div>
+                                    <div class="ps-radio ps-radio--inline ps-radio--color3">
+                                        <input class="form-control" type="radio" id="radio3" name="type-1">
+                                        <label for="radio3"></label>
+                                    </div>
+                                </div>
+                                <div class="ps-product__block ps-product__size">
+                                    <h4>CHOOSE SIZE & QUANTITY<a href="#">Size chart</a></h4>
+                                    <select class="ps-select selectpicker" title="Select Size">
+                                        <option value="6">7</option>
+                                    </select>
+                                    <div class="form-group ps-number">
+                                        <input class="form-control" type="text" value="1"><span class="up"></span><span class="down"></span>
+                                    </div>
+                                </div>
+                                <div class="ps-product__shopping"><a class="ps-btn" href="cart.html">Order Now</a>
+                                    <div class="ps-product__actions"><a class="mr-10" href="whishlist.html"><i class="ps-icon-heart"></i></a><a href="compare.html" title="Compare"><i class="ps-icon-compare"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JS Library-->
+        <script src="{% static 'bookshop/plugins/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/jquery-bar-rating/dist/jquery.barrating.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/imagesloaded.pkgd.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/masonry.pkgd.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/slick/slick/slick.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/jquery.matchHeight-min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/elevatezoom/jquery.elevatezoom.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/gmap3.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+        <script src="{% static 'bookshop/plugins/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+        <script src="{% static 'bookshop/js/slider-1.js' %}"></script>
+        <!-- Custom scripts-->
+        <script src="{% static 'bookshop/js/main.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAckIeA7eVaNv2fKmIKl-udHqlZW2tYxME&amp;region=GB"></script>
+       
+    </body>
+</html>

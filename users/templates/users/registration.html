@@ -1,0 +1,50 @@
+{% extends 'bookshop/base.html' %}
+{% load static %}
+<title>{% block title %} Registration | Bookshop{% endblock%}</title>
+{% block content %}
+
+    <section class="my_account_area pt--80 pb--55 bg--white">
+        <div class="container">
+            <div class="row">
+                <!-- registration form  -->
+                <div class="col-lg-6 col-12">
+
+                    <h1 style="margin-top:10%;">Register With Us</h1><br>
+                    <form class="ps-form--contact" action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Username <sup>*</sup></label>
+                            <input class="form-control" type="text" placeholder="Enter Your Username" name="username"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email <sup>*</sup></label>
+                            <input class="form-control" type="email" placeholder="Enter Your Email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password <sup>*</sup></label>
+                            <input class="form-control" type="password" placeholder="Enter Your Password" name="password"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password <sup>*</sup></label>
+                            <input class="form-control" type="password" placeholder="Confirm Password" name="confirm_password" required>
+                        </div>
+                        <div class="form-group">
+                            <button class="ps-btn pl-60 pr-60">Register </button>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <p class="text-muted">Already An Account?<a class="ml-2" href="{% url 'login' %}">Log In
+                                    </a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
