@@ -41,7 +41,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 ">
-                            <p>460 West 34th Street, 15th floor, New York - Hotline: 804-377-3580 - 804-399-3580</p>
+                            <p>Islamabad, Pakistan - Hotline: 0306-2281-637</p>
                         </div>
                         <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12 ">
                             <div class="header__actions">
@@ -116,9 +116,15 @@
                                     
                                     <p>Item Total:<span>${{ cart.get_total_price }}</span></p>
                                 </div>
-                                <div class="ps-cart__footer"><a class="ps-btn" href="{% url 'order_create' %}">Check out<i class="ps-icon-arrow-left"></i></a></div>
+                                {% if cart.get_total_price == 0 %}
+                                    <div class="ps-cart__footer"><a class="ps-btn" href="">Cart is Empty<i class="ps-icon-arrow-left"></i></a></div>
+                                {% else %}
+                                    <div class="ps-cart__footer"><a class="ps-btn" href="{% url 'order_create' %}">Check out<i class="ps-icon-arrow-left"></i></a></div>
+                                {% endif %}
+                                
                             </div>
                         </div>
+                        
                         <form class="ps-form--search" action="{% url 'search' %}" method="post">
                             {% csrf_token %}
                             <input class="form-control" name="search" type="text" placeholder="Search Product…">

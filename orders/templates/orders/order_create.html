@@ -4,8 +4,8 @@
 {% block content %} 
     <div class="ps-hero">
         <div class="container">
-            <h3>Checkout</h3>
-            <p>Page Checkout</p>
+            <h3>Order Detail</h3>
+            <p>Page Order</p>
         </div>
     </div>
     <div class="ps-checkout pt-40 pb-40">
@@ -100,24 +100,18 @@
                             </div>
                             <footer>
                                 <h3>Payment Method</h3>
-                                <div class="form-group cheque">
-                                    <div class="ps-radio ps-radio--small">
-                                        <input class="form-control" type="radio" id="rdo01" name="payment" checked>
-                                        <label for="rdo01">Cheque Payment</label>
-                                    </div>
-                                    <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                </div>
+                                
                                 <div class="form-group paypal">
                                     <div class="ps-radio ps-radio--small">
-                                        <input class="form-control" type="radio" name="payment" id="rdo02">
-                                        <label for="rdo02">Paypal</label>
+                                        <input class="form-control" type="radio" name="payment" id="rdo02" checked>
+                                        <label for="rdo02">Credit Card</label>
                                     </div>
                                     <ul class="ps-payment-method">
                                         <li><a href="#"><img src="{% static 'bookshop/images/payment/1.png' %}" alt=""></a></li>
                                         <li><a href="#"><img src="{% static 'bookshop/images/payment/2.png' %}" alt=""></a></li>
                                         <li><a href="#"><img src="{% static 'bookshop/images/payment/3.png' %}" alt=""></a></li>
                                     </ul>
-                                    <button class="ps-btn ps-btn--fullwidth">Place Order</button>
+                                    <button class="ps-btn ps-btn--fullwidth">Process to Payment</button>
                                 </div>
                             </footer>
                         </div>

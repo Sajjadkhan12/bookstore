@@ -49,7 +49,7 @@
                                     <td>${{ item.total_price }}</td>
                                     <td>
                                         <div class="form-group--number">
-                                            <form action="{% url 'cart_remove' product.id %}"method="post">
+                                            <form action="{% url 'cart_remove' product.id %}" method="post">
                                                 <button class="minus"><span>-</span></button>
                                                 {% csrf_token %}
                                             </form>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="ps-cart__total">
-                        <h3>Total Price: <span> ${{ cart.get_total_price }}</span></h3><a class="ps-btn" href="{% url 'order_create' %}">Process to checkout</a>
+                        <h3>Total Price: <span> ${{ cart.get_total_price }}</span></h3><a class="ps-btn" href="{% url 'order_create' %}">Process to order</a>
                     </div>
                 </div>
             </div>

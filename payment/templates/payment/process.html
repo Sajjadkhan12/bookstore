@@ -26,7 +26,7 @@
     <div class="ps-hero">
         <div class="container">
             <h3>Pay by credit card</h3>
-            <p>Page Checkout</p>
+            <p>Page Payment </p>
         </div>
     </div>
 <div class="container" style="margin-top: 3%;">
@@ -42,7 +42,7 @@
         <div id="expiration-date" class="field"></div>
         <br>
         <input type="hidden" id="nonce" name="payment_method_nonce" value="">
-        <br>
+        
         {% csrf_token %}
         
         <input class="ps-btn" type="submit" value="Pay">

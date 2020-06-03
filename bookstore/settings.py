@@ -12,9 +12,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$(@kyv*7hkrfmo1p5ea&(ix05_xx7p(paz6bxrgqo-se#q9vt('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -72,8 +72,13 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'database': 'projectw_shoping',
+        'user' = 'projectw_shoping',
+        'password' = 'yg%m2vku$c]e',
+        'default-character-set'= 'utf8'
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -117,7 +122,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# Static asset configuration
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, 'static'),
+)
+
 
 
 CART_SESSION_ID = 'cart'
@@ -136,5 +149,7 @@ BRAINTREE_CONF = braintree.Configuration(
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True

@@ -13,6 +13,7 @@ urlpatterns = [
     path('payment/', include('payment.urls')),
     
     
+    
 ]
 
 if settings.DEBUG:
