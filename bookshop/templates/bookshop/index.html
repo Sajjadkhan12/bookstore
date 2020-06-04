@@ -3,6 +3,21 @@
 <title>{% block title %} Bookshop | Home{% endblock%}</title>
 {% block content %} 
    
+    <div class="ps-modal" id="subscribe-modal">
+        <div class="ps-modal__content ps-subscribe--popup bg--cover" data-background="{% static 'bookshop/images/subscribe.jpg' %}">
+            <div class="ps-modal__remove"><i class="fa fa-remove"></i></div>
+            <h3>subscribe email</h3>
+            <p>Follow us & get<span>20% OFF</span>coupon for first purchase !!!!!</p>
+            <form class="ps-form--subscribe-email" action="do_action" method="post">
+                <div class="form-group">
+                    <div class="form-group__icon"><i class="fa fa-envelope"></i></div>
+                    <input class="form-control" type="text" placeholder="Type Your Email">
+                </div>
+                <button><i class="ps-icon-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+
     <div class="ps-home-slider">
         <div id="rev_slider_2_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="home-1" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
             <!-- START REVOLUTION SLIDER 5.4.6.3.1 fullwidth mode -->
@@ -46,27 +61,46 @@
             <div class="ps-masonry">
                 <div class="grid-sizer"></div>
                 <div class="grid-item large">
-                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="product-listing.html"><img src="{% static 'bookshop/images/collection/home-1.jpg' %}" alt=""></a></div>
+                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="{% url 'product_list' %}"><img src="{% static 'bookshop/images/collection/home-1.jpg' %}" alt=""></a></div>
                 </div>
                 <div class="grid-item">
-                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="product-listing.html"><img src="{% static 'bookshop/images/collection/home-2.jpg' %}" alt=""></a></div>
+                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="{% url 'product_list' %}"><img src="{% static 'bookshop/images/collection/home-2.jpg' %}" alt=""></a></div>
                 </div>
                 <div class="grid-item">
-                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="product-listing.html"><img src="{% static 'bookshop/images/collection/home-3.jpg' %}" alt=""></a></div>
+                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="{% url 'product_list' %}"><img src="{% static 'bookshop/images/collection/home-3.jpg' %}" alt=""></a></div>
                 </div>
                 <div class="grid-item">
-                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="product-listing.html"><img src="{% static 'bookshop/images/collection/home-4.jpg' %}" alt=""></a></div>
+                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="{% url 'product_list' %}"><img src="{% static 'bookshop/images/collection/home-4.jpg' %}" alt=""></a></div>
                 </div>
                 <div class="grid-item">
-                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="product-listing.html"><img src="{% static 'bookshop/images/collection/home-5.jpg' %}" alt=""></a></div>
+                    <div class="grid-item__content-wrapper"><a class="ps-collection" href="{% url 'product_list' %}"><img src="{% static 'bookshop/images/collection/home-5.jpg' %}" alt=""></a></div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 
     <div class="ps-section pt-80 pb-30">
         <div class="ps-container">
+            <div class="ps-subscribe">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-md-push-6">
+                        <div class="ps-subscribe__content"><i class="ps-icon-notify"></i>
+                            <h3>SIGN UP TO NEWSLETTERS</h3>
+                            <p>And receive <strong>$25 coupon</strong> for first shopping ...!</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-md-pull-6">
+                        <form class="ps-form--subscribe" action="do_action" method="post">
+                            <div class="form-group">
+                                <div class="form-group__icon"><i class="fa fa-envelope"></i></div>
+                                <input class="form-control" type="text" placeholder="Type Your Email">
+                            </div>
+                            <button><i class="ps-icon-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="ps-section__header text-center">
                 <h2 class="ps-section__title">LATEST BOOKS</h2>
                 <p>Featured collections created and curated by our editors</p>
@@ -96,7 +130,72 @@
         </div>
     </div>
 
-    
-    
+   
+    <div class="ps-section">
+        <div class="ps-container">
+            <div class="ps-section__header text-center">
+                <h2 class="ps-section__title">Our Story</h2>
+                <p>Here are key products that bring fashionistas to Xuper Store.</p>
+            </div>
+            <div class="ps-section__content">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-post ps-post--home">
+                            <div class="ps-post__thumbnail">
+                                <div class="ps-post__posted"><span class="date">11</span><span class="month">Jan</span></div><a class="ps-post__overlay" href="blog-detail.html"></a>
+                                <img class="lazy" src="{% static 'bookshop/images/blog/home-1.jpg' %}" alt="">
+                            </div>
+                            <div class="ps-post__content"><a class="ps-post__title" href="blog-detail.html">An Inside Look at the Breaking2 Kit</a>
+                                <p class="ps-post__meta"><span>By:<a class="mr-5" href="blog.html"> Alena Studio</a></span></p>
+                                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further…</p><a class="ps-post__morelink" href="blog-detail.html">Read more<i class="ps-icon-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-post ps-post--home">
+                            <div class="ps-post__thumbnail">
+                                <div class="ps-post__posted"><span class="date">11</span><span class="month">Jan</span></div><a class="ps-post__overlay" href="blog-detail.html"></a>
+                                <img class="lazy" src="{% static 'bookshop/images/blog/home-2.jpg' %}" alt="">
+                            </div>
+                            <div class="ps-post__content"><a class="ps-post__title" href="blog-detail.html">Unpacking the Breaking2 Race Strategy</a>
+                                <p class="ps-post__meta"><span>By:<a class="mr-5" href="blog.html"> Alena Studio</a></span></p>
+                                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further…</p><a class="ps-post__morelink" href="blog-detail.html">Read more<i class="ps-icon-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-post ps-post--home">
+                            <div class="ps-post__thumbnail">
+                                <div class="ps-post__posted"><span class="date">11</span><span class="month">Jan</span></div><a class="ps-post__overlay" href="blog-detail.html"></a>
+                                <img class="lazy" src="{% static 'bookshop/images/blog/home-3.jpg' %}" alt="">
+                            </div>
+                            <div class="ps-post__content"><a class="ps-post__title" href="blog-detail.html">Nike’s Latest Football Cleat</a>
+                                <p class="ps-post__meta"><span>By:<a class="mr-5" href="blog.html"> Alena Studio</a></span></p>
+                                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further…</p><a class="ps-post__morelink" href="blog-detail.html">Read more<i class="ps-icon-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+    <div class="ps-section--partner">
+        <div class="ps-container">
+            <div class="owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="60" data-owl-nav="false" data-owl-dots="false" data-owl-item="5" data-owl-item-xs="3" 
+            data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-duration="1000" 
+            data-owl-mousedrag="on"><a href="#">
+                <img src="{% static 'bookshop/images/partner/1.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/2.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/3.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/4.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/5.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/1.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/2.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/3.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/4.png' %}" alt=""></a><a href="#">
+                <img src="{% static 'bookshop/images/partner/5.png' %}" alt=""></a></div>
+        </div>
+    </div>
 {% endblock %}

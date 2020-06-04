@@ -18,8 +18,15 @@ def order_create(request):
         phone = request.POST['phone']
         postal_code = request.POST['postal_code']
         city = request.POST['city']
+        
+        coupon = None
+        discount = None
+        if cart.coupon:
+            coupon = cart.coupon
+            discount = cart.coupon.discount
+            
         order = Order.objects.create(first_name=first_name,last_name=last_name,email=email,address=address,
-                                    phone=phone,postal_code=postal_code,city=city)
+                                    phone=phone,postal_code=postal_code,city=city,coupon=coupon,discount=discount)
    
         for item in cart:
             OrderItem.objects.create(order=order,product=item['product'],price=item['price'],quantity=item['quantity'])
