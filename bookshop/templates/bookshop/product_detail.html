@@ -18,14 +18,16 @@
                             <div class="ps-product__preview">
                                 <div class="ps-product__variants">
                                     <div class="item"><img src="{{ product.image.url }}" alt=""></div>
-                                    <!-- <div class="item"><img src="{% static 'bookshop/images/shoe-detail/2.jpg' %}" alt=""></div>
-                                    <div class="item"><img src="{% static 'bookshop/images/shoe-detail/3.jpg' %}" alt=""></div>
-                                    <div class="item"><img src="{% static 'bookshop/images/shoe-detail/3.jpg' %}" alt=""></div>
-                                    <div class="item"><img src="{% static 'bookshop/images/shoe-detail/3.jpg' %}" alt=""></div> -->
-                                </div><a class="popup-youtube ps-product__video" href="http://www.youtube.com/watch?v=0O2aH4XLbto"><img src="{% static 'bookshop/images/shoe-detail/1.jpg' %}" alt=""><i class="fa fa-play"></i></a>
+                                    <div class="item"><img src="{{ product.image2.url }}" alt=""></div>
+                                    <div class="item"><img src="{{ product.image3.url }}" alt=""></div>
+                                    
+                                </div>
+                                
                             </div>
                             <div class="ps-product__image">
                                 <div class="item"><img class="zoom" src="{{ product.image.url }}" alt="" data-zoom-image="images/shoe-detail/1.jpg"></div>
+                                <div class="item"><img class="zoom" src="{{ product.image2.url }}" alt="" data-zoom-image="images/shoe-detail/1.jpg"></div>
+                                <div class="item"><img class="zoom" src="{{ product.image3.url }}" alt="" data-zoom-image="images/shoe-detail/1.jpg"></div>
                                 
                             </div>
                         </div>
@@ -66,13 +68,13 @@
                     <ul class="tab-list" role="tablist">
                         <li class="active"><a href="#tab_01" aria-controls="tab_01" role="tab" data-toggle="tab">Overview</a></li>
                         <li><a href="#tab_02" aria-controls="tab_02" role="tab" data-toggle="tab">Review</a></li>
-                        <li><a href="#tab_03" aria-controls="tab_03" role="tab" data-toggle="tab">PRODUCT TAGs</a></li>
+                        
                         <li><a href="#tab_04" aria-controls="tab_04" role="tab" data-toggle="tab">ADDITIONAL</a></li>
                     </ul>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab_01">
-                        <p>{{ products.description }}</p>
+                        <p>{{ product.description }}</p>
                        
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab_02">
@@ -128,16 +130,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="tab_03">
-                        <p>Add your tag <span> *</span></p>
-                        <form class="ps-form--create-tags" action="_action" method="post">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="">
-                                <button class="ps-btn">Add Tags</button>
-                            </div>
-                        </form>
-                        <p>Use spaces to separate tags. Use single quotes ( * ) for phrases.</p>
-                    </div>
+                   
                     <div class="tab-pane" role="tabpanel" id="tab_04">
                         <form class="ps-form--addition" action="do_action" method="post">
                             <div class="form-group">
