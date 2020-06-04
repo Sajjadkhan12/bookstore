@@ -117,7 +117,7 @@
                                     <p>Item Total:<span>${{ cart.get_total_price }}</span></p>
                                 </div>
                                 {% if cart.get_total_price == 0 %}
-                                    <div class="ps-cart__footer"><a class="ps-btn" href="">Cart is Empty<i class="ps-icon-arrow-left"></i></a></div>
+                                    <div class="ps-cart__footer"><a class="ps-btn" >Cart is Empty<i class="ps-icon-arrow-left"></i></a></div>
                                 {% else %}
                                     <div class="ps-cart__footer"><a class="ps-btn" href="{% url 'order_create' %}">Check out<i class="ps-icon-arrow-left"></i></a></div>
                                 {% endif %}
@@ -140,6 +140,40 @@
         {% block content %}
         {% endblock %}
 
+        <div class="ps-section--features">
+            <div class="ps-container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-iconbox">
+                            <header><i class="ps-icon-delivery"></i>
+                                <h3>FREE SHIPPING</h3>
+                                <p>ON ORDER OVER $199</p>
+                            </header>
+                            <p>Want to track a package? Find tracking information and order details from Your Orders.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-iconbox">
+                            <header><i class="ps-icon-wallet"></i>
+                                <h3>100% MONEY BACK.</h3>
+                                <p>WITHIN 30 DAYS AFTER DELIVERY.</p>
+                            </header>
+                            <p>You may return most new, unopened items sold within 30 days of delivery for a full refund.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-iconbox">
+                            <header><i class="ps-icon-customer-service"></i>
+                                <h3>SUPPORT 24/7.</h3>
+                                <p>WE CAN HELP YOU ONLINE.</p>
+                            </header>
+                            <p>We offer a 24/7 customer hotline so you’re never alone if you have a question.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="ps-footer site-footer">
             <div class="ps-footer__content">
                 <div class="ps-container">
@@ -149,13 +183,13 @@
                                 <p>Xuper is a global fashion destination for 20-somethings. We sell cutting-edge fashion and offer a wide variety of fashion-related content, making Xuper Store the hub of a thriving fashion community.</p>
                                 <div class="ps-site-info__contact">
                                     <h4>Contact Info</h4>
-                                    <p>179 CMT8, District I, HCM City, Vietnam</p>
-                                    <p>(+84 ) 7534 9773, (+84 ) 874 548</p>
+                                    <p>Islamabad, Pakistan</p>
+                                    <p>(+92 ) 3062 281637</p>
                                 </div>
                                 <ul class="ps-social">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href="https://www.facebook.com/sk7698277"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://www.twitter.com/sk7698277"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.instagram.com/sk7698277"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -206,10 +240,10 @@
                 <div class="ps-container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
-                            <p>&copy; Copyright by <span>XUPER STORE</span>. Design by <a href="#">Alena Studio</a>.</p>
+                            <p>&copy; Copyright  <span>2020</span>. Design by <a href="https://www.twitter.com/sk7698277">Sajjad Khan</a>.</p>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
-                            <div class="ps-footer__payment-methods"><a href="#"><img src="{% static 'bookshop/images/payment-method/paypal.png' %}" alt=""></a><a href="#"><img src="images/payment-method/visa.png" alt=""></a><a href="#"><img src="images/payment-method/master-card.png" alt=""></a></div>
+                            <div class="ps-footer__payment-methods"><a href="#"><img src="{% static 'bookshop/images/payment-method/paypal.png' %}" alt=""></a><a href="#"><img src="{% static 'bookshop/images/payment-method/visa.png' %}" alt=""></a><a href="#"><img src="{% static 'bookshop/images/payment-method/master-card.png' %}" alt=""></a></div>
                         </div>
                     </div>
                 </div>
@@ -316,7 +350,6 @@
         <script src="{% static 'bookshop/js/slider-1.js' %}"></script>
         <!-- Custom scripts-->
         <script src="{% static 'bookshop/js/main.js' %}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAckIeA7eVaNv2fKmIKl-udHqlZW2tYxME&amp;region=GB"></script>
-       
+      
     </body>
 </html>
