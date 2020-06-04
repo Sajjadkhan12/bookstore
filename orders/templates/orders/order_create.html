@@ -88,12 +88,20 @@
                                         
                                             <tr>
                                                 <td>{{ item.product.name }} {{ item.quantity }}x</td>
-                                                <td>${{ item.total_price }}</td>
+                                                <td> ${{ item.total_price|floatformat:2 }} </td>
                                             </tr>
                                         {% endfor %}
+                                        {% if cart.coupon %}
                                         <tr>
-                                            <td>Order Total</td>
-                                            <td>${{ cart.get_total_price }}</td>
+                                            <td>"{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off) </td>
+                                            <td>
+                                                <span style="color: red;">- ${{ cart.get_discount|floatformat:2 }}</
+                                                span></td>
+                                        </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <td>Total Price: </td>
+                                            <td>${{ cart.get_total_price_after_discount|floatformat:2 }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

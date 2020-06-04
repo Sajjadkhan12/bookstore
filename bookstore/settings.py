@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'bookshop.apps.BookshopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'coupons.apps.CouponsConfig',
     'payment.apps.PaymentConfig',
     'django.contrib.admin',
     'django.contrib.auth',

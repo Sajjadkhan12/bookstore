@@ -30,6 +30,8 @@
                             {% with product=item.product %}
                                 <tr>
                                     <td><a class="ps-product--compare" href="{{ product.get_absolute_url }}">
+                                        <img class="mr-15" src="{% if product.image %}{{ product.image.url }}
+                                        {% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
                                         {{ product.name }}</a></td>
                                     <td>${{ item.price }}</td>
                                     <td>
@@ -61,8 +63,13 @@
                 <div class="ps-cart__actions">
                     <div class="ps-cart__promotion">
                         <div class="form-group">
-                            <div class="ps-form--icon"><i class="fa fa-angle-right"></i>
-                                <input class="form-control" type="text" placeholder="Promo Code">
+                            <div class="ps-form--icon">
+                               
+                                <form action="{% url 'coupons:apply' %}" method="post">
+                                    
+                                     <input class="form-control" name="coupon" type="text" placeholder="Promo Code">
+                                    {% csrf_token %}
+                                </form>
                             </div>
                         </div>
                         <div class="form-group">
@@ -70,7 +77,15 @@
                         </div>
                     </div>
                     <div class="ps-cart__total">
-                        <h3>Total Price: <span> ${{ cart.get_total_price }}</span></h3>
+                        {% if cart.coupon %}
+                            
+                                <h3>Subtotal <span>${{ cart.get_total_price|floatformat:2 }}</span></h3>
+                                <h3>"{{ cart.coupon.code }}" coupon
+                                    ({{ cart.coupon.discount }}% off)<span style="color: red;">- ${{ cart.get_discount|floatformat:2 }}</span></h3>
+
+                        {% endif %}
+                        <h3>Total Price: <span> ${{ cart.get_total_price_after_discount|floatformat:2 }}</span></h3>
+
                         {% if cart.get_total_price == 0 %}
                         <button class="ps-btn" >Cart is Empty</button>
                         {% else %}
