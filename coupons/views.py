@@ -9,7 +9,7 @@ from .forms import CouponApplyForm
 def coupon_apply(request):
     if request.method == 'POST':
         mycode = request.POST['coupon']
-
+    
     now = timezone.now()
     
     try:
