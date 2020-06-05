@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$(@kyv*7hkrfmo1p5ea&(ix05_xx7p(paz6bxrgqo-se#q9vt('
 DEBUG = False
 
-ALLOWED_HOSTS = ['bookstore212.herokuapp.com/']
+ALLOWED_HOSTS = ['mydjbookstore.herokuapp.com']
 
 
 # Application definition
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     
-    'whitenoise.middleware.WhiteNoiseMiddleWare',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
