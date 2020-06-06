@@ -24,9 +24,12 @@ def order_create(request):
             coupon = cart.coupon
             discount = cart.coupon.discount
             
+            order = Order.objects.create(first_name=first_name,last_name=last_name,email=email,address=address, 
+                                        phone=phone,postal_code=postal_code,city=city,coupon=coupon,discount=discount)
+         
+        else:
+                                      
             order = Order.objects.create(first_name=first_name,last_name=last_name,email=email,address=address,
-                                    phone=phone,postal_code=postal_code,city=city,coupon=coupon,discount=discount)
-        order = Order.objects.create(first_name=first_name,last_name=last_name,email=email,address=address,
                                     phone=phone,postal_code=postal_code,city=city)
         for item in cart:
             OrderItem.objects.create(order=order,product=item['product'],price=item['price'],quantity=item['quantity'])

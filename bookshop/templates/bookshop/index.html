@@ -91,7 +91,8 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-md-pull-6">
-                        <form class="ps-form--subscribe" action="do_action" method="post">
+                        <form class="ps-form--subscribe" action="" method="post">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <div class="form-group__icon"><i class="fa fa-envelope"></i></div>
                                 <input class="form-control" type="text" placeholder="Type Your Email">
