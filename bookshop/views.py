@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product
+from .models import Category, Product, Review
 from django.views.generic import  DetailView
 from cart.forms import CartAddProductForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -32,7 +33,16 @@ def product_list(request,category_slug=None):
 def product_detail(request, slug):
     product = get_object_or_404(Product,slug=slug,available=True)
     cart_product_form = CartAddProductForm()
-    return render(request,'bookshop/product_detail.html',{'product': product,'cart_product_form': cart_product_form})
+    
+    #getting product id for showing all review realted to one product
+    reviewproduct = Product.objects.filter(slug=slug)
+    prid = None
+    for product_id in reviewproduct:
+        prid = product_id.id
+
+    all_reviews = Review.objects.filter(product=prid)
+    
+    return render(request,'bookshop/product_detail.html',{'product': product,'cart_product_form': cart_product_form,'all_reviews':all_reviews})
 
 def all_Categories(request):
     categories = Category.objects.all()
@@ -49,3 +59,19 @@ def search_Result(request):
         searh_query = request.POST['search']
         query_result = Product.objects.filter(name__startswith=searh_query)
         return render(request,'bookshop/search.html',{'query_result':query_result,'searh_query':searh_query})
+
+
+#review 
+def Comment_Review(request,product_id):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        rating = request.POST['rating']
+        review_comment = request.POST['review']
+        product = get_object_or_404(Product,id=product_id)
+        comment_review = Review.objects.create(product=product,name=name,email=email,rating=rating,review_comment=review_comment)
+        message = messages.success(request,"Your reviews is submitted")
+        
+        return render(request,'bookshop/product_detail.html')
+    
+    return render(request,'bookshop/product_detail.html')
